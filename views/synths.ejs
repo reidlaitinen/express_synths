@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <% include ./partials/head %>
+ </head>
+ <body>
+   <header>
+     <% include ./partials/navbar %>
+   </header>
+   <h1 class='center'>My Synths</h1>
+   <hr />
+   <div class='row'>
+     <div class='col s12 m4'>
+       <h3>Add Synth</h3>
+       <form action='/synths' method='POST'>
+         <input type='text' name='name' placeholder='Name' autocomplete='off' />
+         <button class='btn btn-waves' type='submit'>Add</button>
+       </form>
+     </div>
+     <table class='table col m8 s12'>
+       <thead>
+         <th>Name</th>
+         <th>Edit</th>
+         <th>x</th>
+       </thead>
+       <tbody>
+         <% synths.forEach( function(synth) { %>
+           <% var deleteUrl = "/synths/" + synth.id + "?_method=DELETE" %>
+           <% var editUrl = "/synths/" + synth.id + "/edit" %>
+           <tr>
+             <td><%= synth.name %></td>
+             <td>
+               <a class="btn" href=<%= editUrl %>>Edit</a>
+             </td>
+             <td>
+               <form method="POST" action=<%= deleteUrl %>>
+                 <button class="btn red">Delete</button>
+               </form>
+             </td>
+         <% }); %>
+       </tbody>
+     </table>
+   </body>
+</html>
