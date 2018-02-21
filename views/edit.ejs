@@ -9,7 +9,7 @@
     <div class="container">
       <% var url = "/synths/" + synth.id + "?_method=PUT" %>
       <form method="POST" action=<%= url %> >
-        <input required name="title" value="<%= synth.name %>" />
+        <input required name="name" value="<%= synth.name %>" />
         <a href="/synths" class="btn red">Cancel</a>
         <button class="btn">Save</button>
      </form>

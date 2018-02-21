@@ -33,6 +33,7 @@ router.delete('/:id', function(req, res) {
   
 })
 
+/* GET edit page for specific synth */
 router.get('/:id/edit', function(req, res) {
   Synth.findById(req.params.id)
     .then( function(synth) {
@@ -40,6 +41,7 @@ router.get('/:id/edit', function(req, res) {
   });
 });
 
+/* PUT edit a synth */
 router.put('/:id', function(req, res) {
   Synth.update(
     { name: req.body.name },
