@@ -17,9 +17,9 @@ router.get('/', function(req, res, next) {
 /* POST add synth */
 router.post('/', function(req, res) {
   var name = req.body.name;
-  var description = req.body.description;
+  var manufacturer = req.body.manufacturer;
   var price = req.body.price;
-  Synth.create({ name: name, description: description, price: price })
+  Synth.create({ name: name, manufacturer: manufacturer, price: price })
     .then( function() {
       res.redirect('/synths');
   });
@@ -44,7 +44,9 @@ router.get('/:id/edit', function(req, res) {
 /* PUT edit a synth */
 router.put('/:id', function(req, res) {
   Synth.update(
-    { name: req.body.name },
+    { name: req.body.name,
+      manufacturer: req.body.manufacturer,
+      price: req.body.price },
     { where: { id: req.params.id } }
   )
   .then( function() {
