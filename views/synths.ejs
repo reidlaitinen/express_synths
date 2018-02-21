@@ -28,13 +28,15 @@
          <th>x</th>
        </thead>
        <tbody>
+         <% var totalPrice = 0 %>
          <% synths.forEach( function(synth) { %>
            <% var deleteUrl = "/synths/" + synth.id + "?_method=DELETE" %>
            <% var editUrl = "/synths/" + synth.id + "/edit" %>
+           <% totalPrice += synth.price %>
            <tr>
              <td><%= synth.name %></td>
              <td><%= synth.manufacturer %></td>
-             <td><%= synth.price %></td>
+             <td>$<%= synth.price %></td>
              <td>
                <a class="btn" href=<%= editUrl %>>Edit</a>
              </td>
@@ -45,6 +47,13 @@
              </td>
          <% }); %>
        </tbody>
+       <tfoot>
+         <tr>
+           <td></td>
+           <td id='totalPrice'>Total:</td>
+           <td>$<%= totalPrice %></td>
+         </tr>
+       </tfoot>
      </table>
    </body>
 </html>

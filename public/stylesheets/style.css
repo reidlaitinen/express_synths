@@ -1,1 +1,6 @@
-@import 'materialize.min.css'
+@import 'materialize.min.css';
+
+#totalPrice {
+  text-align: right;
+  font-weight: bold;
+}
