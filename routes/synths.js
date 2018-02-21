@@ -4,7 +4,11 @@ var Synth = require('../models').Synth;
 
 /* GET all synths */
 router.get('/', function(req, res, next) {
-  Synth.all()
+  Synth.all({
+    order: [
+      ['createdAt', 'ASC']
+    ]
+  })
     .then(function(synths) {
       return res.render('synths', {synths: synths})
     })
@@ -28,5 +32,22 @@ router.delete('/:id', function(req, res) {
     .then( function() { return res.redirect('/synths') })
   
 })
+
+router.get('/:id/edit', function(req, res) {
+  Synth.findById(req.params.id)
+    .then( function(synth) {
+      return res.render('edit', { synth: synth });
+  });
+});
+
+router.put('/:id', function(req, res) {
+  Synth.update(
+    { name: req.body.name },
+    { where: { id: req.params.id } }
+  )
+  .then( function() {
+    return res.redirect('/synths');
+  })
+});
 
 module.exports = router;
